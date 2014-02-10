@@ -162,7 +162,7 @@ Bundle 'SirVer/ultisnips'
 Bundle 'tmhedberg/matchit'
 
 " indent-based text objects: ai ii al il
-Bundle 'vim-indent-object'
+Bundle 'michaeljsmith/vim-indent-object'
 
 " Add csXX to change delimiters like '', <>, etc.
 Bundle 'tpope/vim-surround'
@@ -170,8 +170,9 @@ Bundle 'tpope/vim-surround'
 " C-n repeatedly makes multiple selections.
 Bundle 'terryma/vim-multiple-cursors'
 
+Bundle 'sickill/vim-pasta'
+
 " Bundle 'kshenoy/vim-signature'
-" Bundle 'michaeljsmith/vim-indent-object'
 " Bundle 'godlygeek/tabular'
 " Bundle 'AutoClose'
 " Bundle 'tpope/vim-capslock'
