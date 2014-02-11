@@ -5,6 +5,9 @@ source ~/.vim/bundles.vim
 " Display options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Multi-key mapping timeout
+set tm=350
+
 " Enable syntax coloring.
 syn on
 
@@ -70,50 +73,39 @@ let mapleader=","
 inoremap hh <ESC>
 
 " Pressing space in command mode removes search highlighting.
-map <Space> :noh<cr>
+nnoremap <Space> :noh<cr>
 
 " F2 Saves current file in normal or insert mode.
-map <F2> :w<CR>
-imap <F2> <ESC>:w<CR>
-
-" F4 Switchs to previous file in normal or insert mode (realize on lusty
-" juggler).
-map <F4> ,lj22
-imap <F4> <ESC>,lj22
+nnoremap <F2> :w<CR>
+inoremap <F2> <ESC>:w<CR>
 
 " F5 runs make.
-map <F5> :make<CR>
-imap <F5> <ESC>:make<CR>
-
-" Move between windows with one chord.
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-" Close the current buffer
-map <C-l> <C-W>l
+nnoremap <F5> :make<CR>
+inoremap <F5> <ESC>:make<CR>
 
 " Make Y work like D and C.
-nmap Y y$
+nnoremap Y y$
 
-" Switch mark commands to make restoring position in line easier.
-nnoremap ' `
-nnoremap ` '
+" Move between windows with one chord.
+" map <C-j> <C-W>j
+" map <C-k> <C-W>k
+" map <C-h> <C-W>h
+" map <C-l> <C-W>l
 
-" Switch ^ and 0
+" Close the current buffer
+nnoremap <Leader>j :bd<CR>
+
+" Swap some similar commands for more useful ones.
 nnoremap ^ 0
 nnoremap 0 ^
 
 " space + [j/k] to move a line up/down.
-nmap <Space>j mz:m+<cr>`z
-nmap <Space>k mz:m-2<cr>`z
+" TODO: can these be made to take a count?
+nnoremap <Space>j mz:m+<cr>`z
+nnoremap <Space>k mz:m-2<cr>`z
 
 " Add w!! to write with sudo (even if vim running without).
 cmap w!! w !sudo tee % >/dev/null
-
-" Break a single insert mode session into multiple actions in the undo tree.
-inoremap <C-U> <C-G>u<C-U>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching, undo, and command line
@@ -302,11 +294,19 @@ au FileType vo_base set noexpandtab
 au FileType vo_base set nolist
 au FileType vo_base set tabstop=2
 
+" pasta (indent-fixing paste)
+let g:pasta_disabled_filetypes = ['coffee', 'yaml']
+
 " Enable rainbow parentheses.
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+" F4 Switchs to previous file in normal or insert mode (relies on lusty
+" juggler).
+nnoremap <F4> :LustyJugglePrevious<CR>
+inoremap <F4> :LustyJugglePrevious<CR>
 
 " Use c++11 and gcc with syntastic.
 " using an auto command to set this is a temporary workaround to a bug;
