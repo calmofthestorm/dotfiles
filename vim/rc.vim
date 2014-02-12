@@ -62,12 +62,30 @@ set lazyredraw
 " Dedicate a column to showing folds.
 set foldcolumn=1
 
+" Set color scheme
+colors molokai
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Custom keybindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Use , instead of default \ as leader.
+" Use , instead of default \ as leader. (dvorak overrides)
 let mapleader=","
+
+" Use QWERTY commands in Dvorak OS layout.
+source ~/.vim/dvorak.vim
+
+" Bizzare highly personalized keybindings.
+source ~/.vim/dvorak_crazy.vim
+
+" Plugin bindings for Dvorak (crazy is enabled).
+for f in split(glob('~/.vim/dvorak_plugins/*.vim'), '\n')
+  exe 'source' f
+endfor
+
+" Use Dvorak for everything except Normal mode non-chords, Qwerty for those.
+" (this breaks plugins...wtf...)
+" set langmap=\\'q,\\,w,\\.e,pr,yt,aa,os,ed,uf,ig,\\;z,qx,jc,kv,xb,fy,gu,ci,ro,lp,dh,hj,tk,nl,s\\;,-',bn,mm,w\\,,v\\.,z\\/,\\"Q,\\<W,\\>E,PR,YT,AA,OS,ED,UF,IG,\\:Z,QX,JC,KV,XB,FY,GU,CI,RO,LP,DH,HJ,TK,NL,S\\:,\\_\\",BN,MM,W\\<,V\\>,Z\\?,\\/-,\\?_
 
 " Bind hh to exit insert mode.
 inoremap hh <ESC>
@@ -83,8 +101,8 @@ inoremap <F2> <ESC>:w<CR>
 nnoremap <F5> :make<CR>
 inoremap <F5> <ESC>:make<CR>
 
-" Make Y work like D and C.
-nnoremap Y y$
+" Make Y work like D and C. (Dvorak)
+nnoremap F y$
 
 " Move between windows with one chord.
 " map <C-j> <C-W>j
@@ -101,8 +119,8 @@ nnoremap 0 ^
 
 " space + [j/k] to move a line up/down.
 " TODO: can these be made to take a count?
-nnoremap <Space>j mz:m+<cr>`z
-nnoremap <Space>k mz:m-2<cr>`z
+nnoremap <Space>t mz:m+<cr>`z
+nnoremap <Space>n mz:m-2<cr>`z
 
 " Add w!! to write with sudo (even if vim running without).
 cmap w!! w !sudo tee % >/dev/null
@@ -251,8 +269,8 @@ set complete-=i
 " Plug-ins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Use Dvorak key bindings with lusty juggler.
-let g:LustyJugglerKeyboardLayout = "dvorak"
+" Show key to press in LustyJuggler
+let g:LustyJugglerShowKeys = 'a'
 
 " Specify the colors used by rainbow parentheses.
 let g:rbpt_colorpairs = [
@@ -268,6 +286,15 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3'],
   \ ]
+
+" Use YouCompleteMe auto completion in comments.
+let g:ycm_complete_in_comments = 1
+
+" Language specific identifiers.
+let g:ycm_seed_identifiers_with_syntax = 1
+
+" Disable debugging ycm
+let g:ycm_key_detailed_diagnostics = ''
 
 " Use up and down only with YouCompleteMe, leaving tab free for UltiSnips.
 let g:ycm_key_list_previous_completion = ['<Up>']
@@ -313,5 +340,9 @@ inoremap <F4> :LustyJugglePrevious<CR>
 " setting the checkers directly somehow gets overwritten later.
 autocmd CursorMovedI * let g:syntastic_cpp_compiler_options = ' -std=c++11'
 autocmd CursorMovedI * let g:syntastic_cpp_checkers=['gcc']
+
+" Pasta wants to replace builtin paste.
+let g:pasta_paste_before_mapping = 'L'
+let g:pasta_paste_after_mapping = 'l'
 
 " vim:set ft=vim et sw=2:

@@ -11,7 +11,7 @@ Bundle 'gmarik/vundle'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " theme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'tomasr/molokai'
+Bundle 'sickill/molokai'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " simple
@@ -27,7 +27,7 @@ Bundle 'SearchComplete'
 Bundle 'kien/rainbow_parentheses.vim'
 
 " vim a.cc:33 opens a.cc on line 33 iff a.cc:33 does not exist.
-Bundle 'file-line'
+Bundle 'bogado/file-line'
 
 " visually display indent levels with alternating columns
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -121,7 +121,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-speeddating'
 
 " Adds ][ bindings for common paired commands (eg error jumping)
-Bundle 'tpope/vim-unimpaired'
+" Bundle 'tpope/vim-unimpaired'
 
 " Bundle 'tpope/vim-eunuch'
 " Bundle 'Rip-Rip/clang_complete'
@@ -158,11 +158,8 @@ Bundle 'SirVer/ultisnips'
 " editing and movement and marks and motions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" % matches branches, tags, etc so it's actually useful.
-Bundle 'tmhedberg/matchit'
-
 " indent-based text objects: ai ii al il
-Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'calmofthestorm/vim-indent-object'
 
 " Add csXX to change delimiters like '', <>, etc.
 Bundle 'tpope/vim-surround'
@@ -170,6 +167,7 @@ Bundle 'tpope/vim-surround'
 " C-n repeatedly makes multiple selections.
 Bundle 'terryma/vim-multiple-cursors'
 
+" Autoindent pastes (slightly smarter than ]p for hand-indented code)
 Bundle 'sickill/vim-pasta'
 
 " Bundle 'kshenoy/vim-signature'
