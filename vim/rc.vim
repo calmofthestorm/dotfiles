@@ -16,7 +16,12 @@ set tm=500
 syn on
 
 " Show line numbers relative to current line.
-set relativenumber
+
+if v:version >= 730
+  set relativenumber
+else
+  set number
+endif
 
 " Show current row and column in lower right.
 set ruler
@@ -147,13 +152,15 @@ set hlsearch
 set incsearch
 
 " Make undo history persistent between sessions.
-set undodir=/home/alexr/.vim/undo
+if v:version >= 730
+  set undodir=/home/alexr/.vim/undo
 
-" Save undo's after file closes
-set undofile
+  " Save undo's after file closes
+  set undofile
 
-" Save small files (< 10000 lines) buffer reloads in undo tree.
-set undoreload=10000
+  " Save small files (< 10000 lines) buffer reloads in undo tree.
+  set undoreload=10000
+endif
 
 " Command line tab completion should list all possible completions, but only
 " complete ambiguous commands if Thad is pressed again.
