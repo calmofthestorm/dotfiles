@@ -20,9 +20,6 @@ Bundle 'sickill/molokai'
 " fully automatic detect indentation
 Bundle 'tpope/vim-sleuth'
 
-" tab complete while searching
-Bundle 'SearchComplete'
-
 " color parentheses matching pretty colors!
 Bundle 'kien/rainbow_parentheses.vim'
 
