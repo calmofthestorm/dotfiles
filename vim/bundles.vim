@@ -55,7 +55,7 @@ Bundle 'scrooloose/syntastic'
 " Commenting (and alignment)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gcc gC c-_ c-_
-Bundle 'tomtom/tcomment_vim'
+Bundle 'file:///home/alexr/projects/tcomment_vim'
 
 " Bundle 'scrooloose/nerdcommenter'
 " Bundle 'Align'
