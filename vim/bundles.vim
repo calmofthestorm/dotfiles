@@ -151,7 +151,9 @@ Bundle 'tpope/vim-speeddating'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Life changing! dotfiles/vim/UltiSnips has snippets.
-Bundle 'SirVer/ultisnips'
+" disabled by default except on codng setups.
+" CODING
+" Bundle 'SirVer/ultisnips'
 
 " Bundle 'snippetsEmu'
 " Bundle 'msanders/snipmate.vim'
