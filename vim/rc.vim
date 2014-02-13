@@ -5,8 +5,12 @@ source ~/.vim/bundles.vim
 " Display options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" hide menus by default when running GUI.
+set guioptions-=m
+set guioptions-=T
+
 " Multi-key mapping timeout
-set tm=350
+set tm=500
 
 " Enable syntax coloring.
 syn on
@@ -89,6 +93,8 @@ endfor
 
 " Bind hh to exit insert mode.
 inoremap hh <ESC>
+
+nnoremap <F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<Bar>if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
 
 " Pressing space in command mode removes search highlighting.
 nnoremap <Space> :noh<cr>
