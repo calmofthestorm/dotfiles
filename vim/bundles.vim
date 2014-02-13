@@ -11,7 +11,7 @@ Bundle 'gmarik/vundle'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " theme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'sickill/molokai'
+Bundle 'tomasr/molokai'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " simple
@@ -55,7 +55,7 @@ Bundle 'scrooloose/syntastic'
 " Commenting (and alignment)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gcc gC c-_ c-_
-Bundle 'file:///home/alexr/projects/tcomment_vim'
+Bundle 'calmofthestorm/tcomment_vim'
 
 " Bundle 'scrooloose/nerdcommenter'
 " Bundle 'Align'
@@ -82,8 +82,13 @@ Bundle 'LustyExplorer'
 " auto completion and tags
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" awesome auto completion
-Bundle 'Valloric/YouCompleteMe'
+" awesome auto completion. Only really needed for substantial coding,
+" if v:version >= 703 || (v:version == 703 && has('patch584'))
+" endif
+" so silently disable if unsupported VIM. EDIT: since Vundle won't
+" support conditional bundle exclusion, comment it out BY DEFAULT
+" and uncomment in case of coding.
+" Bundle 'Valloric/YouCompleteMe'
 
 " Bundle 'gmarik/ide-popup.vim'
 " Bundle 'xolox/easytags'

@@ -277,6 +277,8 @@ set complete-=i
 
 " Show key to press in LustyJuggler
 let g:LustyJugglerShowKeys = 'a'
+let g:LustyJugglerSuppressRubyWarning = 1
+let g:LustyExplorerSuppressRubyWarning = 1
 
 " Specify the colors used by rainbow parentheses.
 let g:rbpt_colorpairs = [
