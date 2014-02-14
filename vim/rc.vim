@@ -5,6 +5,9 @@ source ~/.vim/bundles.vim
 " Display options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Don't blink cursor except in insert or operator pending mode.
+set guicursor+=n-v-c:blinkon0
+
 " hide menus by default when running GUI.
 set guioptions-=m
 set guioptions-=T
