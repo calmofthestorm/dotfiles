@@ -85,6 +85,9 @@ Bundle 'LustyExplorer'
 " auto completion and tags
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" awesome auto completion. Only really needed for substantial coding,
+Bundle 'Valloric/YouCompleteMe'
+
 " Bundle 'gmarik/ide-popup.vim'
 " Bundle 'xolox/easytags'
 " Bundle 'vim_taglist'
@@ -144,6 +147,9 @@ Bundle 'tpope/vim-speeddating'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " snippets like text mate
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Life changing! dotfiles/vim/UltiSnips has snippets.
+Bundle 'SirVer/ultisnips'
 
 " Bundle 'snippetsEmu'
 " Bundle 'msanders/snipmate.vim'
