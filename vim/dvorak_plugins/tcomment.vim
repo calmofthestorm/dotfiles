@@ -3,7 +3,7 @@ let g:tcommentMaps = 0
 let g:tcommentMapLeader1 = '<c-_>'
 let g:tcommentMapLeader2 = '<leader>?'
 let g:tcommentMapLeaderOp1 = 'ij'
-let g:tcommentMapLeaderOp2 = 'ij'
+let g:tcommentMapLeaderOp2 = 'iJ'
 let g:tcommentTextObjectInlineComment = 'cj'
 
 exec 'map '. g:tcommentMapLeader1 . g:tcommentMapLeader1 .' <Plug>TComment-<c-_><c-_>'
