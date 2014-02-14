@@ -85,14 +85,6 @@ Bundle 'LustyExplorer'
 " auto completion and tags
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" awesome auto completion. Only really needed for substantial coding,
-" if v:version >= 703 || (v:version == 703 && has('patch584'))
-" endif
-" so silently disable if unsupported VIM. EDIT: since Vundle won't
-" support conditional bundle exclusion, comment it out BY DEFAULT
-" and uncomment in case of coding.
-" Bundle 'Valloric/YouCompleteMe'
-
 " Bundle 'gmarik/ide-popup.vim'
 " Bundle 'xolox/easytags'
 " Bundle 'vim_taglist'
@@ -152,11 +144,6 @@ Bundle 'tpope/vim-speeddating'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " snippets like text mate
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Life changing! dotfiles/vim/UltiSnips has snippets.
-" disabled by default except on codng setups.
-" CODING
-" Bundle 'SirVer/ultisnips'
 
 " Bundle 'snippetsEmu'
 " Bundle 'msanders/snipmate.vim'
