@@ -17,7 +17,7 @@ syn on
 
 " Show line numbers relative to current line.
 
-if v:version >= 730
+if v:version >= 703
   set relativenumber
 else
   set number
@@ -152,7 +152,7 @@ set hlsearch
 set incsearch
 
 " Make undo history persistent between sessions.
-if v:version >= 730
+if v:version >= 703
   set undodir=/home/alexr/.vim/undo
 
   " Save undo's after file closes
