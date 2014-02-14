@@ -139,6 +139,12 @@ nnoremap <Space>n mz:m-2<cr>`z
 " Add w!! to write with sudo (even if vim running without).
 cmap w!! w !sudo tee % >/dev/null
 
+" Single char insert append. Because screw Ex mode in interactive.
+function! RepeatChar(char, count)
+  return repeat(a:char, a:count)
+endfunction
+nnoremap ' :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching, undo, and command line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
