@@ -77,6 +77,9 @@ set foldcolumn=1
 " Set color scheme
 colors molokai
 
+" Warn about long lines.
+set colorcolumn=80
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Custom keybindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
