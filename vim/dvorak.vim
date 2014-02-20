@@ -109,21 +109,21 @@ noremap i0 g0
 
 " Q_ud
 onoremap ii gg
-onoremap ik gk
-onoremap ij gj
+onoremap it gk
+onoremap ih gj
 
 noremap ii gg
-noremap ik gk
-noremap ij gj
+noremap it gk
+noremap ih gj
 
 " Q_tm
-noremap ie ge
-noremap iE gE
+noremap i. ge
+noremap i> gE
 
 " Q_pa
 noremap i# g#
-noremap i- gd
-noremap i_ gD
+noremap ie gd
+noremap iE gD
 
 " Q_vm
 noremap ir go
@@ -256,3 +256,72 @@ noremap ;R zR
 noremap ;b zn
 noremap ;B zB
 noremap ;c zi
+
+" g commands not otherwise specified
+noremap iu gf
+noremap iU gF
+noremap id gh
+noremap iD gH
+noremap iC gi
+noremap ib gn
+noremap iB gN
+noremap i" gQ
+noremap i'al gqap
+noremap i'i' gqgq
+noremap i'' gqq
+noremap iP gR
+noremap iy gt
+noremap iY gT
+noremap igig gugu
+noremap iGiG gUgU
+noremap igg guu
+noremap iGG gUU
+noremap iK gV
+noremap i, gw
+noremap i,i, gwgw
+noremap i,, gww
+noremap i~i~ g~g~
+noremap i<Down> g<Down>
+noremap i<End> g<End>
+noremap iZiZ g?g?
+noremap i<Home> g<Home>
+noremap i<LeftMouse> g<LeftMouse>
+noremap i<RightMouse> g<RightMouse>
+noremap i* g*
+noremap i<Up> g<Up>
+noremap i` g`
+noremap i`a g`a
+noremap i'a g'a
+noremap i~ g~
+noremap i~~ g~~
+noremap iW g<
+noremap i? g_
+noremap i/ g-
+noremap iw g,
+noremap is g;
+noremap iZ g?
+noremap iZZ g??
+noremap i- g'
+noremap i= g]
+noremap i@ g@
+noremap i& g&
+noremap i} g+
+
+vnoremap i? g?
+vnoremap i= g]
+vnoremap iu gf
+vnoremap iU gF
+vnoremap iJ gJ
+vnoremap ib gn
+vnoremap iB gN
+vnoremap i' gq
+vnoremap ik gv
+vnoremap iK gV
+vnoremap i, gw
+vnoremap i_CTRL-] g_CTRL-]
+
+noremap i_CTRL-] g_CTRL-]
+noremap i_CTRL-A g_CTRL-A
+noremap i_CTRL-G g_CTRL-G
+noremap i_CTRL-H g_CTRL-H
+noremap i_CTRL-G g_CTRL-G

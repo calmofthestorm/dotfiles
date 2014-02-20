@@ -9,8 +9,6 @@
 
 noremap d `
 noremap D "
-noremap id gd
-noremap iD gD
 vnoremap ad a'
 vnoremap cd i'
 vnoremap aD a"
@@ -43,3 +41,13 @@ noremap _ :
 
 noremap ` '
 noremap d `
+
+onoremap in gk
+onoremap it gj
+noremap in gk
+noremap it gj
+
+" g commands not otherwise specified
+noremap ih gh
+noremap i- g;
+noremap id g'
