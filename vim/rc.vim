@@ -5,6 +5,9 @@ source ~/.vim/bundles.vim
 " Display options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Font
+set guifont=Monospace\ 9
+
 " Don't blink cursor except in insert or operator pending mode.
 set guicursor+=n-v-c:blinkon0
 
@@ -75,7 +78,7 @@ set lazyredraw
 set foldcolumn=1
 
 " Set color scheme
-colors molokai
+colors koehler
 
 " Warn about long lines.
 set colorcolumn=80
@@ -146,7 +149,7 @@ cmap w!! w !sudo tee % >/dev/null
 function! RepeatChar(char, count)
   return repeat(a:char, a:count)
 endfunction
-nnoremap ' :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
+nnoremap " :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching, undo, and command line
@@ -360,7 +363,7 @@ au Syntax * RainbowParenthesesLoadBraces
 " F4 Switchs to previous file in normal or insert mode (relies on lusty
 " juggler).
 nnoremap <F4> :LustyJugglePrevious<CR>
-inoremap <F4> :LustyJugglePrevious<CR>
+inoremap <F4> <C-O>:LustyJugglePrevious<CR>
 
 " Use c++11 and gcc with syntastic.
 " using an auto command to set this is a temporary workaround to a bug;
