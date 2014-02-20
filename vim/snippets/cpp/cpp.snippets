@@ -222,20 +222,44 @@ endsnippet
 ###########################################################################
 # Loops
 
-snippet forr
+snippet for
 for (${1} : ${2}) {
 	$0
 }
 endsnippet
 
 snippet fora
-for (auto& ${1:it} : ${2}) {
+for (${1:auto} ${2:it} : ${3}) {
 	$0
 }
 endsnippet
 
-snippet foro
-for (const auto& ${1:it} : ${2}) {
+snippet forp
+for (${1:auto}* ${2:it} : ${3}) {
+	$0
+}
+endsnippet
+
+snippet forr
+for (${1:auto}& ${2:it} : ${3}) {
+	$0
+}
+endsnippet
+
+snippet forca
+for (const ${1:auto} ${2:it} : ${3}) {
+	$0
+}
+endsnippet
+
+snippet forcp
+for (const ${1:auto}* ${2:it} : ${3}) {
+	$0
+}
+endsnippet
+
+snippet forcr
+for (const ${1:auto}& ${2:it} : ${3}) {
 	$0
 }
 endsnippet
