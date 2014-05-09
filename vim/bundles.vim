@@ -48,6 +48,8 @@ Bundle 'Lokaltog/vim-easymotion'
 " ,w ,b ,e also [i]
 Bundle 'bkad/CamelCaseMotion'
 
+" Bundle 'bling/vim-airline'
+
 " love this!
 Bundle 'vimoutliner/vimoutliner'
 
@@ -85,6 +87,9 @@ Bundle 'LustyExplorer'
 " auto completion and tags
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" awesome auto completion. Only really needed for substantial coding,
+Bundle 'Valloric/YouCompleteMe'
+
 " Bundle 'gmarik/ide-popup.vim'
 " Bundle 'xolox/easytags'
 " Bundle 'vim_taglist'
@@ -117,6 +122,8 @@ Bundle 'tpope/vim-fugitive'
 " Allow C-a and C-x for dates
 Bundle 'tpope/vim-speeddating'
 
+Bundle 'Shougo/vimshell.vim'
+
 " Adds ][ bindings for common paired commands (eg error jumping)
 " Bundle 'tpope/vim-unimpaired'
 
@@ -129,7 +136,7 @@ Bundle 'tpope/vim-speeddating'
 " Bundle 'jmcantrell/vim-virtualenv'
 " Bundle 'jpalardy/vim-slime'
 " Bundle 'mileszs/ack.vim'
-" Bundle 'YankRing'
+
 " http://rope.sourceforge.net/ropevim.html
 " Bundle 'tpope/vim-abolish'
 
@@ -145,12 +152,22 @@ Bundle 'tpope/vim-speeddating'
 " snippets like text mate
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Life changing! dotfiles/vim/UltiSnips has snippets.
+Bundle 'SirVer/ultisnips'
+
+Bundle 'derekwyatt/vim-protodef'
 " Bundle 'snippetsEmu'
 " Bundle 'msanders/snipmate.vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " editing and movement and marks and motions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Parameter reordering
+Bundle 'AndrewRadev/sideways.vim'
+Bundle 'tek/vim-fieldtrip'
+Bundle 'kana/vim-submode'
+Bundle 'kien/ctrlp.vim'
 
 " indent-based text objects: ai ii al il
 Bundle 'calmofthestorm/vim-indent-object'
@@ -219,6 +236,7 @@ Bundle 'L9'
 Bundle 'xolox/vim-misc'
 Bundle 'tpope/vim-repeat'
 Bundle 'tlib'
+Bundle 'Shougo/vimproc.vim'
 
 filetype plugin indent on     " required!
 

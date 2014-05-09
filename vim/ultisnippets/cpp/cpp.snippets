@@ -1,0 +1,787 @@
+extends ccppshared
+
+###########################################################################
+# Classes
+
+snippet cl "class .. (class)"
+class ${1:`!p snip.rv = snip.basename or "name"`} {
+	$2
+};$0
+endsnippet
+
+snippet pc "protected .. (protected)"
+protected:
+	$1
+$0
+endsnippet
+
+snippet pv "private .. (private)"
+private:
+	$1
+$0
+endsnippet
+
+snippet pu "public .. (public)"
+public:
+	$1
+$0
+endsnippet
+
+snippet cli "subclass .. (class)"
+class ${1:`!p snip.rv = snip.basename or "name"`} : public $2{
+	$3
+};$0
+endsnippet
+
+snippet AEcl "class .. (class)"
+class ${1} {
+	public:$2
+	private:$3
+};$0
+endsnippet
+
+###########################################################################
+# Namespaces
+
+snippet usa "using alias .. (using)"
+using $1 = $2;$0
+endsnippet
+
+snippet us "using .. (using)"
+using $1;$0
+endsnippet
+
+snippet ns "namespace .. (namespace)"
+namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`} {
+	$0
+}${1/.+/  \/\/ namespace /m}$1${1/.+//m}
+endsnippet
+
+snippet aons "anonymous namespace"
+namespace {
+${0}
+}  // anonymous namespace
+endsnippet
+
+###########################################################################
+# STL structures
+
+snippet map "std::unordered_map (unordered_map)" w
+std::unordered_map<${1}, ${2}>$0
+endsnippet
+
+snippet rbm "std::map (map)" w
+std::map<${1}, ${2}>$0
+endsnippet
+
+snippet set "std::unordered_set (unordered_set)" w
+std::unordered_set<${1}>$0
+endsnippet
+
+snippet rbs "std::set (set)" w
+std::set<${1:key}>$0
+endsnippet
+
+snippet vc "std::vector (v)" w
+std::vector<${1}>$0
+endsnippet
+
+snippet dq "std::deque (v)" w
+std::deque<${1}>$0
+endsnippet
+
+snippet sr "std::string (string)" w
+std::string$0
+endsnippet
+
+snippet pr "std::pair (pair)" w
+std::pair<${1}, ${2}>$0
+endsnippet
+
+snippet mpr "std::make_pair (make_pair)" w
+std::make_pair(${1}, ${2})$0
+endsnippet
+
+snippet tp "std::tuple (tuple)" w
+std::tuple<${1}>$0
+endsnippet
+
+snippet mtp "std::make_tuple (make_tuple)" w
+std::make_tuple(${1}, ${2})$0
+endsnippet
+
+snippet srt "std::sort" w
+std::sort($1);$0
+endsnippet
+
+###########################################################################
+# STL smart pointers
+
+snippet wp "weak_ptr" w
+std::weak_ptr<$1>$0
+endsnippet
+
+snippet sp "shared_ptr" w
+std::shared_ptr<$1>$0
+endsnippet
+
+snippet up "unique_ptr" w
+std::unique_ptr<$1>$0
+endsnippet
+
+snippet vcu "std::vector (vcu)" w
+std::vector<std::unique_ptr<${1}>>$0
+endsnippet
+
+###########################################################################
+# iostream
+
+snippet el "el" w
+std::endl;$0
+endsnippet
+
+snippet ce
+std::cerr << $0
+endsnippet
+
+snippet cee
+std::cerr << $1 << std::endl;$0
+endsnippet
+
+snippet co
+std::cout << $0
+endsnippet
+
+snippet coe
+std::cout << $1 << std::endl;$0
+endsnippet
+
+snippet cpo
+std::copy($1,
+		std::ostream_iterator<${2:int}>(${3:std::cout}, "${4:\n}")
+	);$0
+endsnippet
+
+snippet cpi
+std::copy(
+		std::istream_iterator<${1:int}>(${2:std::cin}),
+		std::istream_iterator<$1>(),
+		std::inserter(v, v.end())
+	);
+endsnippet
+
+###########################################################################
+# Commonly used declarator operators and shortcuts.
+
+snippet csr "const std::string& (string)" w
+const std::string&$0
+endsnippet
+
+snippet csir "const String&" w
+const String&$0
+endsnippet
+
+snippet sir "String " w
+String$0
+endsnippet
+
+snippet cpr "crr" w
+const $1*$0
+endsnippet
+
+snippet crr "crr" w
+const $1&$0
+endsnippet
+
+snippet cupr "unique_ptr" w
+const std::unique_ptr<$1>&$0
+endsnippet
+
+snippet ar "ar" w
+auto&
+endsnippet
+
+snippet car "car" w
+const auto&
+endsnippet
+
+###########################################################################
+# Commonly used container stuff
+
+# (alpha omega)
+snippet ao "$1.begin(), $1.end() (beginend)" w
+${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()
+endsnippet
+
+snippet bins "std::back_inserter(foo)" w
+std::back_inserter($1)$0
+endsnippet
+
+snippet sins "std::inserter(foo)" w
+std::inserter(${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:))/}, $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end())
+endsnippet
+
+###########################################################################
+# Loops
+
+snippet for
+for (${1} : ${2}) {
+	$0
+}
+endsnippet
+
+snippet fora
+for (${1:auto} ${2:it} : ${3}) {
+	$0
+}
+endsnippet
+
+snippet forp
+for (${1:auto}* ${2:it} : ${3}) {
+	$0
+}
+endsnippet
+
+snippet forr
+for (${1:auto}& ${2:it} : ${3}) {
+	$0
+}
+endsnippet
+
+snippet forca
+for (const ${1:auto} ${2:it} : ${3}) {
+	$0
+}
+endsnippet
+
+snippet forcp
+for (const ${1:auto}* ${2:it} : ${3}) {
+	$0
+}
+endsnippet
+
+snippet forcr
+for (const ${1:auto}& ${2:it} : ${3}) {
+	$0
+}
+endsnippet
+
+snippet forit
+for (auto it = $1.begin(); it != $1.end(); ++it) {
+	$0
+}
+endsnippet
+
+snippet forcit
+for (const auto it = $1.cbegin(); it != $1.cend(); ++it) {
+	$0
+}
+endsnippet
+
+snippet forrit
+for (auto it = $1.rbegin(); it != $1.rend(); ++it) {
+	$0
+}
+endsnippet
+
+snippet forrcit
+for (const auto it = $1.crbegin(); it != $1.crend(); ++it) {
+	$0
+}
+endsnippet
+
+###########################################################################
+# Misc
+
+snippet bs "bs" w
+boost::
+endsnippet
+
+snippet meth "member function" b
+${1:void} ${2:`!p snip.rv = snip.basename`}::${3:method_name}($4) {
+	$0
+}
+endsnippet
+
+snippet sr
+$1::$0
+endsnippet
+
+snippet sr2
+$1::$0
+endsnippet
+
+snippet sr3
+$1::$2::$0
+endsnippet
+
+snippet sr4
+$1::$2::$3::$0
+endsnippet
+
+snippet sr5
+$1::$2::$3::$4::$0
+endsnippet
+
+snippet sd "sd" w
+std::
+endsnippet
+
+# C++11 style default enum in C++.
+snippet enum "Enumeration"
+enum class ${1:name} { $0 };
+endsnippet
+
+# C++11 nullptr
+snippet nu "nullptr"
+nullptr
+endsnippet
+
+snippet ns "namespace .. (namespace)"
+namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`} {
+	$0
+}${1/.+/  \/\/ namespace /m}$1${1/.+//m}
+endsnippet
+
+snippet codejam "Google codejam template"
+// Alex Roper
+// alex@aroper.net
+//
+
+#include <algorithm>
+#include <cassert>
+#include <cmath>
+#include <deque>
+#include <future>
+#include <iostream>
+#include <map>
+#include <memory>
+#include <queue>
+#include <set>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
+
+using namespace std;
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN BOILERPLATE
+
+class Problem {
+	public:
+		// Read problem in from file.
+		void read(std::istream& is = std::cin);
+
+		// Do the computation asynchronously.
+		void solve();
+
+		// Wait for and print the result.
+		void write(std::ostream& os = std::cout) const;
+
+	private:
+		// Problem-specific declarations.
+		${1}
+
+		std::future<void> solution;
+
+		// Do the computation synchronously.
+		void solve_internal();
+
+		// Format the result.
+		void write_internal(std::ostream& os = std::cout) const;
+};
+
+std::istream& operator>> (std::istream& os, Problem& p) {
+	p.read(os);
+	return os;
+}
+
+std::ostream& operator<< (std::ostream& os, const Problem& p) {
+	p.write(os);
+	return os;
+}
+
+void Problem::solve() {
+	#ifdef MULTITHREADED
+	auto wrapper = [this]() { this->solve_internal(); };
+	std::future<void> tmp(std::async(std::launch::async, wrapper));
+	std::swap(tmp, solution);
+	#else
+	solve_internal();
+	#endif
+}
+
+void Problem::write(std::ostream& os) const {
+	#ifdef MULTITHREADED
+	solution.wait();
+	#endif
+	write_internal(os);
+}
+
+int main(int argc, char** argv) {
+	int n;
+	std::cin >> n;
+
+	// Read the problems in and solve them asynchronously.
+	std::vector<Problem> problems(n);
+	for (auto& p : problems) {
+		std::cin >> p;
+		p.solve();
+	}
+
+	// Print the results.
+	for (size_t i = 1; i <= n; ++i) {
+		std::cout << "Case #" << i << ": " << problems[i - 1] << std::endl;
+	}
+
+	return 0;
+}
+
+template <typename T>
+std::istream& operator>> (std::istream& os, std::vector<T>& v) {
+  int n;
+  os >> n;
+  v.resize(n);
+  for (auto& elem : v) {
+    os >> elem;
+  }
+}
+
+// END BOILERPLATE
+///////////////////////////////////////////////////////////////////////////////
+
+void Problem::read(std::istream& is) {
+	std::cin >> $2
+}
+
+void Problem::write_internal(std::ostream& os) const {
+	$3
+}
+
+void Problem::solve_internal() {
+	$0
+}
+endsnippet
+
+snippet stlhash "STL hash specialization"
+#include <boost/functional/hash.hpp>
+
+namespace std {
+
+template<>
+struct hash<${1}> {
+	size_t operator () (const $1& key) const {
+		size_t seed = 0;
+		boost::hash_combine(seed, ${0:my_value});
+		return seed;
+	}
+};
+
+}  // namespace std
+endsnippet
+
+snippet vec3class "vec3"
+class vec3 {
+	public:
+		double x;
+		double y;
+		double z;
+
+		vec3()
+			: x(0), y(0), z(0) { }
+
+		vec3(double xi, double yi, double zi)
+			: x(xi), y(yi), z(zi) { }
+
+		vec3 operator- (const vec3& o) const {
+			return vec3(x - o.x, y - o.y, z - o.z);
+		}
+
+		vec3 operator+ (const vec3& o) const {
+			return vec3(x + o.x, y + o.y, z + o.z);
+		}
+
+		vec3 operator* (const double& o) const {
+			return vec3(x * o, y * o, z * o);
+		}
+
+		vec3 operator/ (const double& o) const {
+			return vec3(x / o, y / o, z / o);
+		}
+
+		vec3 operator-= (const vec3& o) {
+			x -= o.x;
+			y -= o.y;
+			z -= o.z;
+		}
+
+		vec3 operator+= (const vec3& o) {
+			x += o.x;
+			y += o.y;
+			z += o.z;
+		}
+
+		vec3 operator*= (const double& o) {
+			x *= o;
+			y *= o;
+			z *= o;
+		}
+
+		vec3 operator/= (const double& o) {
+			x /= o;
+			y /= o;
+			z /= o;
+		}
+
+		vec3 cross (const vec3& v) const {
+			return vec3(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
+		}
+
+		double dot (const vec3& v) const {
+			return (v.x * x + v.y * y + v.z * z);
+		}
+
+		double distance (const vec3& o) const {
+			vec3 t = *this - o;
+			return std::sqrt(t.x * t.x + t.y * t.y + t.z * t.z);
+		}
+
+		double l1norm() const {
+			return x + y + z;
+		}
+
+		double l2norm() const {
+			return distance(vec3(0, 0, 0));
+		}
+};
+
+double distance_from_line_to_point(
+		const vec3& l1,
+		const vec3& l2,
+		const vec3& p
+	) {
+	return ((l2 - l1).cross(l1 - p)).l2norm() / (l2 - l1).l2norm();
+}
+
+istream& operator>> (istream& s, vec3& v) {
+	s >> v.x >> v.y >> v.z;
+}
+endsnippet
+
+snippet unionfind
+// BEGIN calmofthestorm::UnionFind
+// Friendly boost disjoint_sets wrapper
+// Alex Roper
+// alex@aroper.net
+//
+//
+// This is a friendly wrapper around boost::disjoint_sets. The intent is to
+// create a container class with as easy to use (and hard to mess up) an
+// interface as possible, with performance as an acceptable cost. This is
+// accomplished by providing a class that manages all the union find internals
+// such as mapping from arbitrary keys to integers for disjoint_sets, resizing
+// as necessary, etc.
+//
+// Boost functions with tricky semantics (eg, link vs union_set) are removed,
+// exceptions used for illegal operations, etc.
+//
+// This comes at the cost of an indirection layer for all lookups, less
+// general backing than Boost allows, and unnecessary lookups in union_sets.
+//
+// Intended for use in coding competitions, where the slight performance hit
+// is well worth it for simpler semantics.
+//
+//
+#include <unordered_map>
+
+#include <boost/pending/disjoint_sets.hpp>
+#include <boost/iterator/counting_iterator.hpp>
+
+namespace calmofthestorm {
+
+template <typename T>
+class UnionFind {
+  public:
+    UnionFind();
+    UnionFind(std::initializer_list<typename std::vector<T>::value_type> l);
+    UnionFind(const UnionFind& other);
+    UnionFind(UnionFind&& other);
+    UnionFind& operator=(const UnionFind& other);
+    UnionFind& operator=(UnionFind&& other);
+
+    // Get element, adding it as a singleton set if it does not exist.
+    T& operator[] (const T& elem);
+    T& operator[] (T&& elem);
+
+    // Access element, throwing std::out_of_range if it does not exist.
+    T& at (const T& elem);
+
+    // Union the two sets. Throws std::out_of_range if either does not exist.
+    T& union_sets(const T& elem1, const T& elem2);
+
+    // Get the number of SETS.
+    size_t count_sets();
+
+    // Get the number of ELEMENTS.
+    size_t count_elements() const;
+
+    // Get a reference to the elements in the union find (Handy for iteration).
+    inline const std::vector<T>& get_elements() const { return id_to_handle; }
+
+  private:
+    std::vector<size_t> rank, parent;
+    std::vector<T> id_to_handle;
+    std::unordered_map<T, size_t> handle_to_id;
+    boost::disjoint_sets<size_t*, size_t*> uf;
+
+    bool grow();
+};
+
+template <typename T>
+UnionFind<T>::UnionFind ()
+: rank{0},
+  parent{0},
+  id_to_handle(),
+  handle_to_id(),
+  uf(&rank[0], &parent[0]) { }
+
+template <typename T>
+UnionFind<T>::UnionFind(
+    std::initializer_list<typename std::vector<T>::value_type> l
+  )
+: rank(l.size()),
+  parent(l.size()),
+  id_to_handle(l),
+  handle_to_id(),
+  uf(&rank[0], &parent[0])
+{
+  for (size_t i = 0; i < id_to_handle.size(); ++i) {
+    handle_to_id[id_to_handle[i]] = i;
+    uf.make_set(i);
+  }
+}
+
+template <typename T>
+UnionFind<T>::UnionFind(const UnionFind& other)
+: rank(other.rank),
+  parent(other.parent),
+  id_to_handle(other.id_to_handle),
+  handle_to_id(other.handle_to_id),
+  uf(&rank[0], &parent[0]) { }
+
+template <typename T>
+UnionFind<T>::UnionFind(UnionFind&& other)
+: rank(std::move(other.rank)),
+  parent(std::move(other.parent)),
+  id_to_handle(std::move(other.id_to_handle)),
+  handle_to_id(std::move(other.handle_to_id)),
+  uf(&rank[0], &parent[0]) { }
+
+template <typename T>
+UnionFind<T>& UnionFind<T>::operator=(const UnionFind& other) {
+  rank = other.rank;
+  parent = other.parent;
+  id_to_handle = other.id_to_handle;
+  handle_to_id = other.handle_to_id;
+  uf = boost::disjoint_sets<size_t*, size_t*>(&rank[0], &parent[0]);
+  return *this;
+}
+
+template <typename T>
+UnionFind<T>& UnionFind<T>::operator=(UnionFind&& other) {
+  std::swap(rank, other.rank);
+  std::swap(parent, other.parent);
+  std::swap(id_to_handle, other.id_to_handle);
+  std::swap(handle_to_id, other.handle_to_id);
+  uf = boost::disjoint_sets<size_t*, size_t*>(&rank[0], &parent[0]);
+  return *this;
+}
+
+template <typename T>
+T& UnionFind<T>::operator[] (T&& elem) {
+  auto it = handle_to_id.find(elem);
+  if (it != handle_to_id.end()) {
+    return id_to_handle[uf.find_set(it->second)];
+  } else {
+    size_t id = id_to_handle.size();
+    handle_to_id[elem] = id;
+    id_to_handle.push_back(elem);
+    if (id_to_handle.size() > rank.size() && grow()) {
+      uf = boost::disjoint_sets<size_t*, size_t*>(&rank[0], &parent[0]);
+    }
+    uf.make_set(id);
+    return id_to_handle.at(id);
+  }
+}
+
+template <typename T>
+T& UnionFind<T>::operator[] (const T& elem) {
+  return this->operator[] (T(elem));
+}
+
+template <typename T>
+T& UnionFind<T>::at(const T& elem) {
+  return id_to_handle.at(uf.find_set(handle_to_id.at(elem)));
+}
+
+template <typename T>
+T& UnionFind<T>::union_sets(const T& elem1, const T& elem2) {
+  size_t id1 = handle_to_id.at(elem1);
+  size_t id2 = handle_to_id.at(elem2);
+  uf.union_set(id1, id2);
+  return id_to_handle.at(uf.find_set(id1));
+}
+
+template <typename T>
+bool UnionFind<T>::grow() {
+  bool realloc_occurred = false;
+  size_t* buf = &parent[0];
+  parent.resize(parent.size() + 1);
+  realloc_occurred |= (buf != &parent[0]);
+
+  buf = &rank[0];
+  rank.resize(rank.size() + 1);
+  realloc_occurred |= (buf != &rank[0]);
+
+  return realloc_occurred;
+}
+
+template <typename T>
+size_t UnionFind<T>::count_sets() {
+  if (id_to_handle.empty()) {
+    return 0;
+  } else {
+    return uf.count_sets(
+        boost::counting_iterator<size_t>(0),
+        boost::counting_iterator<size_t>(rank.size())
+      );
+  }
+}
+
+template <typename T>
+size_t UnionFind<T>::count_elements() const {
+  return id_to_handle.size();
+}
+
+}  // namespace calmofthestorm
+
+namespace {
+	using calmofthestorm::UnionFind;
+}  // anonymous namespace
+
+// END calmofthestorm::UnionFind
+///////////////////////////////////////////////////////////////////////////////
+
+endsnippet
+
+snippet arma
+#include "armadillo"
+// Armadillo linear algebra library
+// http://arma.sourceforge.net/download.html
+namespace {
+	using namespace arma;
+}  // anonymous namespace
+endsnippet
+
+# vim:ft=snippets:
