@@ -78,7 +78,6 @@ Bundle 'LustyJuggler'
 Bundle 'LustyExplorer'
 
 " Bundle 'corntrace/bufexplorer'
-Bundle 'kien/ctrlp.vikm'
 " Bundle 'jeetsukumaran/vim-buffergator'
 " Bundle 'scratch.vim'
 " Bundle 'scrooloose/nerdtree'
