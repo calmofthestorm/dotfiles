@@ -1,0 +1,47 @@
+global !p
+
+def format_pointer(words):
+  return '->'.join(words)
+
+def format_scope_resolution(words):
+  return '::'.join(words)
+
+def format_score_word(words):
+  return '_'.join(words)
+
+def format_dash_word(words):
+  return '-'.join(words)
+
+def format_camel_case(words):
+  return words[0] + ''.join(w.capitalize() for w in words[1:])
+
+def format_proper_case(words):
+  return ''.join(w.capitalize() for w in words)
+
+def format_jumble_word(words):
+  return ''.join(words)
+
+format_functions = {
+  's':format_score_word,
+  'r':format_scope_resolution,
+  't':format_pointer,
+  'c':format_camel_case,
+  'p':format_proper_case,
+  'd':format_dash_word,
+  'j':format_jumble_word,
+}
+
+def parse_and_format_identifier(match):
+  text = match.group(0)
+  upper = (text[0] == "u")
+  fmt = text[1 if upper else 0]
+  if upper:
+    text = text.upper()
+  words = text[(3 if upper else 2):].split(' ')
+  return format_functions[fmt](words)
+
+endglobal
+
+snippet "(^|[^A-Za-z_])u?[srcjptd]-[A-Za-z_].*" "format identifier" r
+`!p snip.rv = parse_and_format_identifier(match)`
+endsnippet

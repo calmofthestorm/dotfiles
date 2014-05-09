@@ -14,6 +14,8 @@ set guicursor+=n-v-c:blinkon0
 " hide menus by default when running GUI.
 set guioptions-=m
 set guioptions-=T
+set guioptions-=c
+set guioptions+=c
 
 " Multi-key mapping timeout
 set tm=500
@@ -40,6 +42,7 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set list
 
 " Hide completion buffer after selection is made.
+" (but interferes with Syntastic so disabeld)
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
@@ -90,20 +93,8 @@ set colorcolumn=80
 " Use , instead of default \ as leader. (dvorak overrides)
 let mapleader=","
 
-" Use QWERTY commands in Dvorak OS layout.
+" Rebind a few keys to make Dvorak more comfortable.
 source ~/.vim/dvorak.vim
-
-" Bizzare highly personalized keybindings.
-source ~/.vim/dvorak_crazy.vim
-
-" Plugin bindings for Dvorak (crazy is enabled).
-for f in split(glob('~/.vim/dvorak_plugins/*.vim'), '\n')
-  exe 'source' f
-endfor
-
-" Use Dvorak for everything except Normal mode non-chords, Qwerty for those.
-" (this breaks plugins...wtf...)
-" set langmap=\\'q,\\,w,\\.e,pr,yt,aa,os,ed,uf,ig,\\;z,qx,jc,kv,xb,fy,gu,ci,ro,lp,dh,hj,tk,nl,s\\;,-',bn,mm,w\\,,v\\.,z\\/,\\"Q,\\<W,\\>E,PR,YT,AA,OS,ED,UF,IG,\\:Z,QX,JC,KV,XB,FY,GU,CI,RO,LP,DH,HJ,TK,NL,S\\:,\\_\\",BN,MM,W\\<,V\\>,Z\\?,\\/-,\\?_
 
 " Bind hh to exit insert mode.
 inoremap hh <ESC>
@@ -117,12 +108,8 @@ nnoremap <Space> :noh<cr>
 nnoremap <F2> :w<CR>
 inoremap <F2> <ESC>:w<CR>
 
-" F5 runs make.
-nnoremap <F5> :make<CR>
-inoremap <F5> <ESC>:make<CR>
-
-" Make Y work like D and C. (Dvorak)
-nnoremap F y$
+" Make Y work like D and C.
+nnoremap Y y$
 
 " Move between windows with one chord.
 " map <C-j> <C-W>j
@@ -131,7 +118,7 @@ nnoremap F y$
 " map <C-l> <C-W>l
 
 " Close the current buffer
-nnoremap <Leader>j :bd<CR>
+nnoremap <Leader>c :bd<CR>
 
 " Swap some similar commands for more useful ones.
 nnoremap ^ 0
@@ -149,11 +136,17 @@ cmap w!! w !sudo tee % >/dev/null
 function! RepeatChar(char, count)
   return repeat(a:char, a:count)
 endfunction
-nnoremap " :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
+nnoremap ; :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
+
+nnoremap <Leader>w :w<CR>
+
+" ~ is vi legacy silliness
+nnoremap ~ g~
+nnoremap g~ ~
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Searching, undo, and command line
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Searching, undo, and command line
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Ignore case when searching via manual pattern when pattern is all lowercase.
 " Both options are needed.
@@ -189,7 +182,7 @@ set wildignore=*.*.sw*,*.pyc,*.o,*.a,*.la,*.so
 set history=1000
 
 " Number of levels of undo remembered.
-set undolevels=1000
+set undolevels=10000
 
 " Default commands to /g for substitution.
 set gdefault
@@ -245,12 +238,6 @@ endfunc
 " Enable syntax coloring on printouts. Mostly for vim-outliner.
 set popt+=syntax:y
 
-" Reload .[g]vimrc whenever it is changed.
-augroup myvimrc
-    au!
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-augroup END
-
 " Allow switching away from an unsaved buffer.
 set hidden
 
@@ -301,6 +288,8 @@ set complete-=i
 let g:LustyJugglerShowKeys = 'a'
 let g:LustyJugglerSuppressRubyWarning = 1
 let g:LustyExplorerSuppressRubyWarning = 1
+let g:LustyJugglerKeyboardLayout = "dvorak"
+let g:LustyJugglerDefaultMappings = 0
 
 " Specify the colors used by rainbow parentheses.
 let g:rbpt_colorpairs = [
@@ -318,7 +307,19 @@ let g:rbpt_colorpairs = [
   \ ]
 
 " Use YouCompleteMe auto completion in comments.
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_completion=1
+
+let g:ycm_collect_identifiers_from_tags_files=1
+
+" Awesome but just too slow.
+let g:ycm_enable_diagnostic_highlighting=0
+let g:ycm_enable_diagnostic_signs=0
+
 let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+" let g:ycm_max_diagnostics_to_display = 10
 
 " Language specific identifiers.
 let g:ycm_seed_identifiers_with_syntax = 1
@@ -329,7 +330,6 @@ let g:ycm_key_detailed_diagnostics = ''
 " Use up and down only with YouCompleteMe, leaving tab free for UltiSnips.
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_key_list_select_completion = ['<Down>']
-let g:syntastic_enable_highlighting=0
 
 " Used tab for everything in UltiSnips.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -338,7 +338,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Disable UltiSnips builtin snippets; I'm sick of dealing with conflicts
 " every time I update.
-let g:UltiSnipsSnippetDirectories = ['snippets']
+let g:UltiSnipsSnippetDirectories = ['ultisnippets', './.ultisnips']
 
 " Use single quotes by default for Python docstrings in UltiSnips.
 let g:ultisnips_python_quoting_style = 'single'
@@ -350,6 +350,7 @@ let g:indent_guides_enable_on_vim_startup=1
 au FileType vo_base set noexpandtab
 au FileType vo_base set nolist
 au FileType vo_base set tabstop=2
+au FileType vo_base colors vo_dark
 
 " pasta (indent-fixing paste)
 let g:pasta_disabled_filetypes = ['coffee', 'yaml']
@@ -365,14 +366,103 @@ au Syntax * RainbowParenthesesLoadBraces
 nnoremap <F4> :LustyJugglePrevious<CR>
 inoremap <F4> <C-O>:LustyJugglePrevious<CR>
 
+nnoremap <Leader>lj :LustyJuggler<CR>
+
 " Use c++11 and gcc with syntastic.
 " using an auto command to set this is a temporary workaround to a bug;
 " setting the checkers directly somehow gets overwritten later.
-autocmd CursorMovedI * let g:syntastic_cpp_compiler_options = ' -std=c++11'
-autocmd CursorMovedI * let g:syntastic_cpp_checkers=['gcc']
+autocmd FileType cpp let g:syntastic_cpp_compiler_options = ' -std=c++11'
+autocmd FileType cpp let g:syntastic_cpp_checkers=['gcc', 'cpplint']
+autocmd FileType cpp let g:syntastic_cpp_cpplint_args=['--filter=-readability/todo,-runtime/references,-whitespace/comments_two,-readability/casting,-readability/streams,-build/storage_class']
+autocmd FileType cpp let g:syntastic_cpp_cpplint_thres=10000
+let g:syntastic_aggregate_errors = 1
 
 " Pasta wants to replace builtin paste.
 let g:pasta_paste_before_mapping = 'L'
 let g:pasta_paste_after_mapping = 'l'
 
 " vim:set ft=vim et sw=2:
+"
+noremap <F6> :<CR>
+
+nnoremap gs :SidewaysRight<CR>
+nnoremap gS :SidewaysLeft<CR>
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
+
+inoremap <Leader><Leader>n <ESC>:w<CR>
+inoremap <Leader><Leader>h <ESC>:LustyJugglePrevious<CR>
+inoremap <Leader><Leader>nh <ESC>:LustyJuggler<CR>
+nnoremap <Leader><Leader>n :w<CR>
+nnoremap <Leader><Leader>h :LustyJugglePrevious<CR>
+nnoremap <Leader><Leader>nh :LustyJuggler<CR>
+nnoremap <Leader>n :w<CR>
+nnoremap <Leader>h :LustyJugglePrevious<CR>
+nnoremap <Leader>nh :LustyJuggler<CR>
+
+let g:fieldtrip_start_map='gr'
+let g:submode_timeout=0
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_extensions = ['line']
+
+set path+=include
+
+" Defines a submode to rapidly choose a register to paste. When entered,
+" pastes the default register. Pressing any number will undo the previous
+" paste and paste the corresponding kill register. Pressing any letter will
+" paste that register in a similar manner.
+"
+" This is a super lightweight alternative to
+" https://github.com/vim-scripts/YankRing.vim and
+" https://github.com/maxbrunsfeld/vim-yankstack, which don't seem to play
+" nice with heavily customized keymaps since they need to hook into
+" D, C, etc.
+"
+" Requires https://github.com/kana/vim-submode
+"
+
+nnoremap <F5> :SyntasticToggleMode<CR>
+
+call submode#enter_with('killcycle', 'n', '', ',p', 'p')
+call submode#leave_with('killcycle', 'n', '', '<Esc>')
+call submode#map('killcycle', 'n', '', ']', 'u"0p')
+call submode#map('killcycle', 'n', '', '0', 'u"0p')
+call submode#map('killcycle', 'n', '', '1', 'u"1p')
+call submode#map('killcycle', 'n', '', '2', 'u"2p')
+call submode#map('killcycle', 'n', '', '3', 'u"3p')
+call submode#map('killcycle', 'n', '', '4', 'u"4p')
+call submode#map('killcycle', 'n', '', '5', 'u"5p')
+call submode#map('killcycle', 'n', '', '6', 'u"6p')
+call submode#map('killcycle', 'n', '', '7', 'u"7p')
+call submode#map('killcycle', 'n', '', '8', 'u"8p')
+call submode#map('killcycle', 'n', '', '9', 'u"9p')
+call submode#map('killcycle', 'n', '', 'a', 'u"ap')
+call submode#map('killcycle', 'n', '', 'b', 'u"bp')
+call submode#map('killcycle', 'n', '', 'c', 'u"cp')
+call submode#map('killcycle', 'n', '', 'd', 'u"dp')
+call submode#map('killcycle', 'n', '', 'e', 'u"ep')
+call submode#map('killcycle', 'n', '', 'f', 'u"fp')
+call submode#map('killcycle', 'n', '', 'g', 'u"gp')
+call submode#map('killcycle', 'n', '', 'h', 'u"hp')
+call submode#map('killcycle', 'n', '', 'i', 'u"ip')
+call submode#map('killcycle', 'n', '', 'j', 'u"jp')
+call submode#map('killcycle', 'n', '', 'k', 'u"kp')
+call submode#map('killcycle', 'n', '', 'l', 'u"lp')
+call submode#map('killcycle', 'n', '', 'm', 'u"mp')
+call submode#map('killcycle', 'n', '', 'n', 'u"np')
+call submode#map('killcycle', 'n', '', 'o', 'u"op')
+call submode#map('killcycle', 'n', '', 'p', 'u"pp')
+call submode#map('killcycle', 'n', '', 'q', 'u"qp')
+call submode#map('killcycle', 'n', '', 'r', 'u"rp')
+call submode#map('killcycle', 'n', '', 's', 'u"sp')
+call submode#map('killcycle', 'n', '', 't', 'u"tp')
+call submode#map('killcycle', 'n', '', 'u', 'u"up')
+call submode#map('killcycle', 'n', '', 'v', 'u"vp')
+call submode#map('killcycle', 'n', '', 'w', 'u"wp')
+call submode#map('killcycle', 'n', '', 'x', 'u"xp')
+call submode#map('killcycle', 'n', '', 'y', 'u"yp')
+call submode#map('killcycle', 'n', '', 'z', 'u"zp')
