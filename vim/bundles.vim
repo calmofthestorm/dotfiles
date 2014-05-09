@@ -69,7 +69,7 @@ Bundle 'tomtom/tcomment_vim'
 " fuzzy opening and buffer navigation
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " command t
-Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'git://git.wincent.com/command-t.git'
 
 " ,lj
 Bundle 'LustyJuggler'
@@ -78,7 +78,7 @@ Bundle 'LustyJuggler'
 Bundle 'LustyExplorer'
 
 " Bundle 'corntrace/bufexplorer'
-" Bundle 'kien/ctrlp.vikm'
+Bundle 'kien/ctrlp.vikm'
 " Bundle 'jeetsukumaran/vim-buffergator'
 " Bundle 'scratch.vim'
 " Bundle 'scrooloose/nerdtree'
@@ -88,7 +88,7 @@ Bundle 'LustyExplorer'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " awesome auto completion. Only really needed for substantial coding,
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 
 " Bundle 'gmarik/ide-popup.vim'
 " Bundle 'xolox/easytags'
