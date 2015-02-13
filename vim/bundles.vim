@@ -42,6 +42,8 @@ Bundle 'fs111/pydoc.vim'
 " complicated
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+Bundle 'jceb/vim-orgmode'
+
 " Leader Leader wWbBfF ge
 Bundle 'Lokaltog/vim-easymotion'
 
@@ -119,13 +121,20 @@ Bundle 'tpope/vim-fugitive'
 " miscellaneous
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Match braces etc (doesn't play super great with the way I sue snippets)
+" Bundle 'Townk/vim-autoclose'
+
 " Allow C-a and C-x for dates
 Bundle 'tpope/vim-speeddating'
 
 Bundle 'Shougo/vimshell.vim'
 
 " Adds ][ bindings for common paired commands (eg error jumping)
-" Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-unimpaired'
+
+Bundle 'hsitz/VimOrganizer'
+
+Bundle 'vim-scripts/tar.vim'
 
 " Bundle 'tpope/vim-eunuch'
 " Bundle 'Rip-Rip/clang_complete'

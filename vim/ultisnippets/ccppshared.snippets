@@ -55,7 +55,13 @@ endsnippet
 # Loops
 
 snippet for
-for (${1:size_t} ${2:i} = ${3:0}; $2 < ${4:0}; ${5:$2++}) {
+for ($1) {
+	$6
+}$0
+endsnippet
+
+snippet fors
+for ($1; $2; $3) {
 	$6
 }$0
 endsnippet
